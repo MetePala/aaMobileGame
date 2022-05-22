@@ -13,7 +13,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] Text _kalanText;
     [SerializeField] Text _levelText;
     [SerializeField] GameObject _LevelUpCanvas;
+    [SerializeField] GameObject _gameoverButton;
     [SerializeField] Button _button;
+    [SerializeField] GameObject _arrowSpawner;
     private void Awake()
     {
         _kalanText.text = _kalan.ToString();
@@ -35,7 +37,37 @@ public class GameManager : MonoBehaviour
     {
         _buttonanim.SetTrigger("_gameover");
         yield return new WaitForSeconds(0.02f);
+        _gameoverButton.SetActive(true);
+        PlayerPrefs.SetInt("level", _level);
+        PlayerPrefs.SetFloat("rotatespeed", _rotateSpeed);
+        _button.interactable = false;
         Time.timeScale = 0;
+
+    }
+    public void ReStartLevel()
+    {
+        Time.timeScale = 1;
+        _button.interactable = true;
+        try
+        {
+            GameObject.Destroy(_arrowSpawner.transform.GetChild(0).gameObject);
+
+        }
+        catch
+        {
+            Debug.Log("Child Bulunamadý!");
+        }
+      
+        int childs = _mainCircle.transform.childCount;
+        for (int i = childs - 1; i >= 0; i--)
+        {
+            GameObject.Destroy(_mainCircle.transform.GetChild(i).gameObject);
+        }
+        _buttonanim.SetTrigger("_nextlevel");
+        _kalan = PlayerPrefs.GetInt("kalan");
+        _level = PlayerPrefs.GetInt("level");
+        _rotateSpeed = PlayerPrefs.GetFloat("rotatespeed");
+        _gameoverButton.SetActive(false);
     }
 
     public void LevelUp()
