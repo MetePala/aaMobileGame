@@ -19,12 +19,13 @@ public class ArrowCompanent : MonoBehaviour
     //    }
        
     //}
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("arrow"))
-        {
-            FindObjectOfType<GameManager>().GameOver();
-        }
-    }
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("arrow"))
+    //    {
+    //      //  GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezePositionX;
+    //        FindObjectOfType<GameManager>().GameOver();
+    //    }
+    //}
 
 }

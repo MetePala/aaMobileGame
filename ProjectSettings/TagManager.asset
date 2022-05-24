@@ -6,6 +6,7 @@ TagManager:
   tags:
   - circle
   - arrow
+  - smallcircle
   layers:
   - Default
   - TransparentFX

@@ -12,6 +12,7 @@ public class MainCircle : MonoBehaviour
         if (col.gameObject.CompareTag("arrow"))
         {
             col.collider.transform.SetParent(transform);
+           
 
         }
 
